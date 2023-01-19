@@ -1,0 +1,99 @@
+package com.tester;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Scanner;
+
+import com.dal.BookDALimplementation;
+import com.pojo.Book;
+import com.utils.DBConnection;
+
+public class Test_Book {
+
+	public static void main(String[] args) {
+		
+		try
+		{
+			DBConnection.OpenConnection();
+			
+			System.out.println("1:Show All Books 2: Add New  3:Delete Book 4:Update Book");
+
+			BookDALimplementation bdl = new BookDALimplementation();
+			
+			int ch = 0;
+			
+			Scanner sc = new Scanner(System.in);
+			
+			do
+			{
+				System.out.println("Enter Choice:");
+				ch = sc.nextInt();
+				switch(ch)
+				{
+				case 1: 
+					List<Book> list = bdl.getAllBooks();
+					list.forEach(l ->  System.out.println(l));
+					
+					break;
+				
+				case 2:
+					System.out.println("Enter BookId, Title, Author, Cateogory, Price:");
+				Book bk = new Book(sc.nextInt(), sc.next(), sc.next(),sc.next(), sc.nextDouble());
+				int i = bdl.addBook(bk);
+				
+				if(i>0)
+				{
+					System.out.println("Inserted");
+				}
+				break;
+				
+				case 3:
+					System.out.println("Enter BookId To Delete");
+					int id=sc.nextInt();
+					i = bdl.deleteBook(id);
+					
+					if(i>0)
+					{
+						System.out.println("Deleted");
+					}
+					else
+					{
+						System.out.println("Not Found...");
+					}
+					
+				case 4:
+					System.out.println("Edit : BookId NewTitle NewAuthor NewCateogory NewPrice:");
+				Book bkk = new Book(sc.nextInt(), sc.next(), sc.next(), sc.next(), sc.nextDouble());
+				int j = bdl.updateBook(bkk);
+				
+				if(j>0)
+				{
+					System.out.println("Deleted");
+				}
+				else
+				{
+					System.out.println("Not Found...");
+				}
+				}
+				
+			}
+			while(ch!=5);
+				
+			
+		}
+		
+	 catch (ClassNotFoundException e) 
+		{
+		
+		e.printStackTrace();
+		} 
+		catch (SQLException e) 
+		{
+		
+		e.printStackTrace();
+		}
+		
+
+	}
+
+}

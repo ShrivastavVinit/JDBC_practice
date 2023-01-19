@@ -1,0 +1,57 @@
+
+package com.dal;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import com.pojo.Book;
+import com.utils;
+
+public class BookDALimplementation implements BookDAL{
+	
+	private Connection con;
+	private Statement stmt;
+	private ResultSet rset;
+	private PreparedStatement pstmt1,pstmt2,pstmt3;
+	
+	public BookDALimplementation()
+	{
+		con= 
+	}
+
+	@Override
+	public List<Book> getAllBooks() {
+		//select * from book;
+		 List<Book> allBooks = new ArrayList<Book>();
+		 
+		//stmt.executeQuery: read data: select query
+		 
+		 
+		
+		return null;
+	}
+
+	@Override
+	public int addBook(Book b) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteBook(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateBook(Book b) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
+
+}
